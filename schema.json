@@ -1,3 +1,68 @@
 {
-    "type": "object"
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "class": {
+            "enum": ["relation", "function", "partial", "bijection", "injection", "surjection", "constant"]
+        },
+        "signature": {
+            "oneOf": [{
+                "type": "string"
+            }, {
+                "type": "array",
+                "prefixItems": [{ "type": "string" }],
+                "items": { "type": "string" }
+            }]
+        },
+        "expression": {
+            "oneOf": [{
+                "type": "string"
+            }, {
+                "type": "array",
+                "prefixItems": [{ "type": "string" }],
+                "items": { "$ref": "#/$defs/expression" }
+            }, {
+                "type": "array",
+                "prefixItems": [
+                    { "const": "delete" },
+                    {
+                        "type": "array",
+                        "items": { "type": "integer" }
+                    }
+                ]
+            }]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "types": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "aspects": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                ".": {
+                    "type": "array",
+                    "prefixItems": [
+                        { "$ref": "#/$defs/class" },
+                        { "$ref": "#/$defs/signature" },
+                        { "$ref": "#/$defs/signature" }
+                    ]
+                }
+            }
+        },
+        "facts": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "prefixItems": [
+                    { "$ref": "#/$defs/expression" },
+                    { "$ref": "#/$defs/expression" }
+                ]
+            }
+        }
+    }
 }
