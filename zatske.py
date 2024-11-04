@@ -15,16 +15,36 @@ def cli(ctx):
     with open(SCHEMA_PATH, "rb") as handle:
         ctx.obj["SCHEMA"] = json.load(handle)
 
+def formatAspect(ty): return " × ".join(ty[1:]) if ty[0] == "prod" else ty
+CLASS_ARROWS = {
+    "relation": "↛", "partial": "⇀", "injection": "↣", "surjection": "↠",
+    "bijection": "↔",
+}
+
+def formatExpression(expr):
+    if expr[0] == "comp": return "; ".join(map(formatExpression, expr[1:]))
+    elif expr[0] == "dagger": return "(" + formatExpression(expr[1]) + ")†"
+    elif expr[0] == "delete": return "delete" + str(expr[1:])
+    else: return expr
+
 @cli.command()
-@click.argument("olog", type=click.File("rb"))
+@click.argument("ologs", nargs=-1, type=click.File("rb"))
 @click.pass_context
-def summarize(ctx, olog):
-    olog = json.load(olog)
-    validate(ctx.obj["SCHEMA"], olog)
-    print("Yep, it's an olog!")
-    print("Types:", len(olog["types"]))
-    print("Aspects:", *list(olog["aspects"].keys()))
-    print("Facts:", len(olog["facts"]))
+def summarize(ctx, ologs):
+    for olog in ologs:
+        title = click.format_filename(olog.name)
+        olog = json.load(olog)
+        validate(ctx.obj["SCHEMA"], olog)
+        print(title + ":", "Olog with", len(olog["types"]), "types,",
+              len(olog["aspects"]), "aspects, and",
+              len(olog["facts"]), "facts")
+        print("Aspects:")
+        for k, aspect in olog["aspects"].items():
+            print(" ", k, ":", formatAspect(aspect[1]),
+                  CLASS_ARROWS.get(aspect[0], "→"), formatAspect(aspect[2]))
+        print("Facts:")
+        for fact in olog["facts"]:
+            print(" ", formatExpression(fact[0]), "⇒", formatExpression(fact[1]))
 
 register_repl(cli)
 cli(obj={})

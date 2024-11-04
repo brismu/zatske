@@ -18,8 +18,14 @@
                 "type": "string"
             }, {
                 "type": "array",
-                "prefixItems": [{ "type": "string" }],
+                "prefixItems": [{ "const": "comp" }],
                 "items": { "$ref": "#/$defs/expression" }
+            }, {
+                "type": "array",
+                "prefixItems": [
+                    { "const": "dagger" },
+                    { "$ref": "#/$defs/expression" }
+                ]
             }, {
                 "type": "array",
                 "prefixItems": [
