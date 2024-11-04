@@ -42,8 +42,9 @@ def summarize(ctx, ologs):
         for k, aspect in olog["aspects"].items():
             print(" ", k, ":", formatAspect(aspect[1]),
                   CLASS_ARROWS.get(aspect[0], "→"), formatAspect(aspect[2]))
-        print("Facts:")
-        for fact in olog["facts"]:
+        facts = olog.get("facts", ())
+        if facts: print("Facts:")
+        for fact in facts:
             print(" ", formatExpression(fact[0]), "⇒", formatExpression(fact[1]))
 
 register_repl(cli)
