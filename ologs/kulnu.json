@@ -1,0 +1,14 @@
+{
+  "types": ["gugde1", "jecta1", "kulnu1", "kulnu2", "natmi1", "prenu1", "rutni1", "tutra1"],
+  "aspects": {
+    "gugde": ["relation", "gugde1", ["prod", "kulnu2", "tutra1"]],
+    "jecta": ["relation", "jecta1", "tutra1"],
+    "kulnu": ["relation", "kulnu1", "prenu1"],
+    "natmi": ["relation", "natmi1", "kulnu2"],
+    "rutni": ["relation", "rutni1", "kulnu2"],
+    "turni": ["relation", "prenu1", "prenu1"],
+    "tutra": ["relation", "tutra1", "turni1"]
+  },
+  "facts": [
+  ]
+}

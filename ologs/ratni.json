@@ -1,0 +1,10 @@
+{
+  "types": ["rakle1", "rakle2", "rakle3", "ratni1", "xukmi1", "xukmi2", "xukmi3"],
+  "aspects": {
+    "rakle": ["relation", "rakle1", ["prod", "rakle2", "rakle3"]],
+    "ratni": ["relation", "ratni1", ["prod", "rakle1", "ratni3"]],
+    "xukmi": ["relation", "xukmi1", ["prod", "xukmi2", "xukmi3"]]
+  },
+  "facts": [
+  ]
+}

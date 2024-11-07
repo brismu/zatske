@@ -1,0 +1,11 @@
+{
+  "types": ["skari1", "skari2", "skari3", "skari4", "xinmo1", "xinmo3"],
+  "aspects": {
+    "skari": ["relation", "skari1", ["prod", "skari2", "skari3", "skari4"]],
+    "xinmo": ["relation", "xinmo1", ["prod", "skari2", "xinmo3"]],
+    "ckaji": ["relation", "skari1", "skari2"]
+  },
+  "facts": [
+    [["comp", "skari", ["delete", [0]]], "ckaji"]
+  ]
+}

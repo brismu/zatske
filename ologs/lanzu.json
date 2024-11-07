@@ -1,0 +1,10 @@
+{
+  "types": ["lanzu1", "lanzu2", "lanzu3"],
+  "aspects": {
+    "cmima": ["relation", "lanzu2", "lanzu1"],
+    "lanzu": ["relation", "lanzu1", ["prod", "lanzu2", "lanzu3"]]
+  },
+  "facts": [
+    ["lanzu", ["comp", ["delete", [0]], ["dagger", "cmima"]]]
+  ]
+}
