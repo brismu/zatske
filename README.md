@@ -58,3 +58,16 @@ system which annotates arrows. For double ologs, a good system might have:
 * injections,
 * surjections, and
 * constant elements.
+
+The schema supports a fragment of categorical logic, expressed as the
+following primitive expressions:
+
+* id
+
+And the following compound expressions:
+
+* (comp X0 X1 X2 ...)
+* (dagger X)
+* (delete I0 I1 I2 ...)
+
+Expressions may also include any relation defined in the associated olog.
