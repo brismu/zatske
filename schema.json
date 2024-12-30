@@ -29,7 +29,7 @@
             }, {
                 "type": "array",
                 "prefixItems": [
-                    { "const": "delete" },
+                    { "const": "select" },
                     {
                         "type": "array",
                         "items": { "type": "integer" }

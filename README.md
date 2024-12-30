@@ -68,6 +68,6 @@ And the following compound expressions:
 
 * (comp X0 X1 X2 ...)
 * (dagger X)
-* (delete I0 I1 I2 ...)
+* (select I0 I1 I2 ...)
 
 Expressions may also include any relation defined in the associated olog.

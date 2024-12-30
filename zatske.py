@@ -24,7 +24,7 @@ CLASS_ARROWS = {
 def formatExpression(expr):
     if expr[0] == "comp": return "; ".join(map(formatExpression, expr[1:]))
     elif expr[0] == "dagger": return "(" + formatExpression(expr[1]) + ")†"
-    elif expr[0] == "delete": return "delete" + str(expr[1:])
+    elif expr[0] == "select": return "select(" + str(expr[1:]) + ")"
     else: return expr
 
 @cli.command()

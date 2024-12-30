@@ -6,6 +6,6 @@
     "ckaji": ["relation", "skari1", "skari2"]
   },
   "facts": [
-    [["comp", "skari", ["delete", [0]]], "ckaji"]
+    [["comp", "skari", ["select", [0]]], "ckaji"]
   ]
 }
